@@ -1,0 +1,3 @@
+A pitch was considered "up" in the strikezone if it was above the midpoint of the "sz_top" and "sz_bot" measurements provided by Statcast (top and bottom of a given hitter's strikezone).
+
+An interesting result is that many in the top 10 are sidearm pitchers or throw from a low arm-slot.
