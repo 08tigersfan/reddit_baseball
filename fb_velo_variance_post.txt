@@ -1,0 +1,9 @@
+In response to Cardinals pitcher Jack Flaherty's recent post-game interview, in which he answers questions about his fastball velocity, I decided to do a mini-analysis to find which pitchers "play" with their fastballs the most.
+
+Statcast regular-season pitch data from the start of 2021 through 5/9/2023 were used. To account for the use of openers, and to ensure a large sample size from each start, only games in which the pitcher pitched in at least 3 innings, starting no later than the 2nd inning, were considered. Furthermore, only pitchers who had at least 15 "starts" meeting this criteria since the beginning of 2021 were considered. Sinkers, cutters, 4-seam and 2-seam fastballs were all fair game.
+
+Lastly, the specific pitch must have been thrown at least 10 times in a given start to be included in the data used. Within each start, the standard deviation of the velocity of that pitch was computed. The average of these standard deviation values across all the pitcher's starts was used as a measure of how much they "play" with the velocity of that specific fastball. Also, only pitches thrown at least 150 times since the start of 2021 were considered.
+
+To me, these results pass the "eye" test, with Yu Darvish's sinker and Shohei Ohtani's cutter showing up at the top of the leaderboard. And to Jack Flaherty's credit, his four-seam fastball is actually 4th on the list! Now, whether the changes in velocity within a start are due to fatigue or mechanical inconsistencies, rather than a pitcher deliberately throwing harder or softer, remains to be determined. If you look at the second image, you can see the fastballs that are thrown with the smallest deviations in velocity (it's not surprising to me that two fastballs from the very consistent Shane Bieber show up here).
+
+This is my first stab at working with baseball data, so any suggestions for the analysis would be appreciated!
