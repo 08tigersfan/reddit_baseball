@@ -1,0 +1,10 @@
+Statcast pitch-level data and the "baseballr" R package were used to perform this analysis. For all pitchers in the league with at least 200 pitches thrown in both 2022 and 2023, pitch usage percentages were pulled from each year. The yearly difference in usage percentage points was calculated for each pitch, and their absolute values were summed. The 10 pitchers with the greatest sums are shown in the image. Due to the nature of the calculation, many of the pitchers in the top 10 are those who added a new pitch to their arsenal in 2023.
+
+Here are some quick takeaways from the results:
+- Recently-injured A.J. Puk began throwing a sweeper this year, with a whopping usage of 50.4% for a pitch he had never thrown in the bigs prior to 2023. At the time of this post, he has an impressive .156 XWOBA on 126 sweepers according to Baseball Savant.
+
+- Colin Holderman of the Pirates also began throwing a sweeper in 2023, ditching his slider altogether. Comparatively, his new breaking ball has an additional 2.7 inches of total movement and clocks in 1.4 mph slower on average. In a small sample size, he has also cut his walk rate (11.9% to 5.6%) by throwing more strikes with both his fastballs and his new breaking ball.
+
+- Amir Garrett, meanwhile, has appeared to change his go-to fastball by throwing a sinker at a 39.7% clip this year. His fastballs are nearly identical in terms of velocity, and with above-average run on his 4-seam, it's unclear to me if he is consciously throwing a sinker more in 2023, or if a minor change in movement means Statcast is just registering it differently than in years past.
+
+Others in the top 20 include Bryse Wilson, Jameson Taillon, Bailey Falter, Joe Ryan, Nick Pivetta, Matt Strahm, Colin Poche, Jose Urena, Brent Suter, and Sonny Gray.
