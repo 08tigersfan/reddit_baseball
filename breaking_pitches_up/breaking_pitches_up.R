@@ -3,20 +3,16 @@ library(tidyverse)
 
 dat <- read.csv("statcast_pitches_2022_04_07_to_2023_05_17.csv")
 
-# SL = slider
-# KC = knuckle curve
-# CU = curveball
-# ST = sweeper
-# EP = eephus
-# CS = slow curve
-# KN = knuckleball
-# SV = slurve
-breaking <- c("SL", "KC", "CU", "ST", "EP", "CS", "KN", "SV")
+# codes and names of the different types of breaking balls
+breaking <- data.frame(pitch_type = c("SL", "KC", "CU", "ST",
+                                      "EP", "CS", "KN", "SV"),
+                       pitch_name = c("Slider", "Knuckle Curve", "Curveball", "Sweeper",
+                                      "Eephus", "Slow Curve", "Knuckleball", "Slurve"))
 
 # filter the pitches to only include breaking balls
 # filter the pitches to only include those with valid vertical measurements
 dat_breaking <- dat %>%
-  filter(pitch_type %in% breaking &
+  filter(pitch_type %in% breaking$pitch_type &
          !is.na(plate_z) & !is.na(sz_top) & !is.na(sz_bot))
 
 # filter the data to only pitchers who have thrown at least 150 breaking balls since the start of 2022
@@ -59,16 +55,12 @@ labels <- pitcher_pct_up %>%
 names(labels) = pitcher_pct_up$player_name[1:10]
 
 # order the pitchers by decreasing % of breaking balls thrown up in the zone
-# rename the breaking pitches to their full names, e.g. CS = Slow Curve
 top_10_plot %>%
-  mutate(player_name = factor(player_name, levels = pitcher_pct_up$player_name[1:10]),
-         pitch_type = ifelse(pitch_type == "CS", "Slow Curve",
-                             ifelse(pitch_type == "CU", "Curveball",
-                                    ifelse(pitch_type == "SL", "Slider",
-                                           ifelse(pitch_type == "KC", "Knuckle Curve", "Sweeper"))))) %>%
+  mutate(player_name = factor(player_name, levels = pitcher_pct_up$player_name[1:10])) %>%
+  inner_join(breaking, by = "pitch_type") %>%
   ggplot() +
   # plot each pitch's coordinates and color by the type of breaking ball
-  geom_point(aes(x = plate_x, y = plate_z, color = pitch_type), size = 2, alpha = 0.25) +
+  geom_point(aes(x = plate_x, y = plate_z, color = pitch_name), size = 2, alpha = 0.25) +
   # draw the strike zone based on the width of home plate and the average top and bottom strike zone measurements from the full dataset
   geom_rect(aes(xmin = -17/24, xmax = 17/24, ymin = mean(dat$sz_bot, na.rm = TRUE), ymax = mean(dat$sz_top, na.rm = TRUE)), color = "black", alpha = 0) +
   facet_wrap(~player_name, labeller = labeller(player_name = labels)) +
