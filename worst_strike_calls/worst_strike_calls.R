@@ -1,8 +1,10 @@
 library(baseballr)
 library(tidyverse)
 
-cb <- read.csv("C:/Users/jjard/Desktop/baseball/data/worst_strike_calls/cb_bucknor_games.csv")
+# this data originated from the following website: umpscorecards.com/single_umpire/?name=CB%20Bucknor
+cb <- read.csv("cb_bucknor_games.csv")
 
+# grab the dates and teams from all games that CB Bucknor was the home plate umpire for
 cb <- cb %>%
   mutate(game_date = ymd(Date),
          home_team = Home,
@@ -10,7 +12,7 @@ cb <- cb %>%
   select(game_date, home_team, away_team)
 
 # this dataset contains pitches from all days where CB Bucknor was the home plate umpire, from the start of 2015 through 2023-07-04
-dat <- read.csv("C:/Users/jjard/Desktop/baseball/data/worst_strike_calls/statcast_pitches_cb_bucknor.csv")
+dat <- read.csv("statcast_pitches_cb_bucknor.csv")
 
 # it is then filtered to only games that CB was a part of
 dat <- dat %>%
