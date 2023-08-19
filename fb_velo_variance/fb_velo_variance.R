@@ -4,8 +4,9 @@ library(tidyverse)
 
 dat <- read.csv("statcast_pitches_2021_04_01_to_2023_05_09.csv")
 
-# types of fastballs:  FA = Fastball,  FF = 4-Seam,  FT = 2-Seam,  FC = Cutter,  SI = Sinker
-fastballs <- c("FA", "FF", "FT", "FC", "SI")
+# create a dataframe of the types of fastballs
+fastballs <- data.frame(pitch_type = c("FA", "FF", "FT", "FC", "SI"),
+                        pitch_name = c("Fastball", "4-Seam", "2-Seam", "Cutter", "Sinker"))
 
 # reduce the data to one row for each pitcher_x_pitch combination
 pitches <- dat %>%
@@ -15,7 +16,7 @@ pitches <- dat %>%
 
 # subset the pitcher_x_pitch data to just fastballs
 pitches_fastballs <- pitches %>%
-  filter(pitch_type %in% fastballs)
+  filter(pitch_type %in% fastballs$pitch_type)
 
 # reduce the data to one row for each pitcher_x_game combination
 # create a variable "innings" storing which innings that pitcher pitched in for that game
@@ -71,13 +72,9 @@ avg_sd_fastball_velo <- mean_sd_fastball_velo_by_start %>%
 # create a player_pitch variable that stores the pitcher's name and pitch type in the format:
 # FirstName LastName's PitchType (ex. Justin Verlander's 4-Seam)
 avg_sd_fastball_velo_plot <- avg_sd_fastball_velo %>%
-  mutate(pitch_type = ifelse(pitch_type == "SI", "Sinker", pitch_type)) %>%
-  mutate(pitch_type = ifelse(pitch_type == "FC", "Cutter", pitch_type)) %>%
-  mutate(pitch_type = ifelse(pitch_type == "FF", "4-Seam", pitch_type)) %>%
-  mutate(pitch_type = ifelse(pitch_type == "FT", "2-Seam", pitch_type)) %>%
-  mutate(pitch_type = ifelse(pitch_type == "FA", "Fastball", pitch_type)) %>%
+  inner_join(fastballs, by = "pitch_type") %>%
   mutate(player_name = sub("(\\w+),\\s(\\w+)", "\\2 \\1", player_name)) %>%
-  mutate(player_pitch = paste0(player_name, "'s ", pitch_type))
+  mutate(player_pitch = paste0(player_name, "'s ", pitch_name))
 
 # plot the top and bottom 15 pitches (with regards to average standard deviation of velocity)
 avg_sd_fastball_velo_plot %>%
