@@ -1,0 +1,1 @@
+This is a work-in-progress reddit post to visualize MLB average annual attendance data from 1998 to 2023.
