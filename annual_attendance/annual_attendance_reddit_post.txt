@@ -1,1 +1,1 @@
-This is a work-in-progress reddit post to visualize MLB average annual attendance data from 1998 to 2023.
+Data was sourced from baseball-reference. As a note, I did not bold the Toronto Blue Jays' 2020-21 seasons because their departure from Rogers Centre was only temporary. Also, the data from 1998-2004 for the Washington Nationals of course actually represents the Montreal Expos.
